@@ -17,8 +17,8 @@ function newGame() {
 			plateau[i][j] = 0;
 		}
 	}
-	var joueur = 1;
-	afficheTextAnnonce("Le jeu commence ! C'est le tour du joueur "+nomDuJoueur(joueur));
+	var nbJoueur = 1;
+	afficheTextAnnonce("Le jeu commence ! C'est le tour du joueur "+nomDuJoueur(nbJoueur));
 	var jeu = true;
 	creerTableau();
 }
