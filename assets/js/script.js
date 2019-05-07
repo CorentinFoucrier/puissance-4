@@ -34,3 +34,23 @@ nomDuJoueur(nbJoueur) {
 		return "bleu";
 	}
 }
+
+function creerTableau() {
+	text += "<table>";
+	for (var i = 0; i < nbLigne; i++) {
+		text += "<tr>";
+		for (var j = 0; j < nbColonne; j++) {
+			text += '<td onclick="detectClick('+j+')" id="'+[i]+'-'+[j]+'">';
+			if (plateau[i][j] == 1) {
+				text += '<div class="joueur1"></div>';
+			}
+			if (plateau[i][j] == 2) {
+				text += '<div class="joueur2"></div>';
+			}
+			text += "</td>";
+		}
+	text += "</tr>";
+	}
+	text += "</table>";
+	document.getElementById('puissance4').innerHTML = text;
+}
