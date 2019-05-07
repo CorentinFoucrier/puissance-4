@@ -1,0 +1,23 @@
+td {
+	background-color: #168655;
+	width: 75px;
+	height: 75px;
+	position: relative;
+	margin: 5px;
+	text-align: center;
+}
+
+.joueur1, .joueur2 {
+	border-radius: 50px;
+	height: 55px;
+	width: 55px;
+	display: inline-block;
+}
+
+.joueur1 {
+	background-color: #f00;
+}
+
+.joueur2 {
+	background-color: #00f;
+}
