@@ -54,3 +54,48 @@ function creerTableau() {
 	txt += "</table>";
 	document.getElementById('puissance4').innerHTML = txt;
 }
+
+function detectClick(j) {
+	if (verifPosition(j) && jeu) {
+		var ligneEnCour = poseJeton(j); //numéro de la ligne en cour.
+		var verifEnd = puissance4(ligneEnCour, j, 0, 0);
+		if (verifEnd) {
+			jeu = false;
+			afficheTextAnnonce('Le joueur '+nomDuJoueur(nbJoueur)+' a gagné la partie !');
+		} else {
+			if (nbJoueur == 1) {
+				nbJoueur = 2;
+			} else {
+				nbJoueur = 1;
+			}
+			afficheTextAnnonce('c\'est au tour du joueur '+nomDuJoueur(nbJoueur));
+		}
+	}
+}
+/* Si case en haut de la colone est vide alors TRUE sinon FALSE */
+function verifPosition(j) {
+	if (plateau[0][j] == 0) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+function poseJeton(j) {
+	for (var i = nbLigne-1; i >= 0; i--) {
+		if (plateau[i][j] == 0) {
+			plateau[i][j] = nbJoueur;
+			refreshTableau(i, j, nbJoueur);
+			return i;
+		}
+	}
+}
+
+function refreshTableau(x, y, i) {
+	document.getElementById(x+'-'+y).innerHTML = '<div class="joueur'+i+'"></div>';
+}
+
+function puissance4(ligne, colonne, l, c) {
+	console.log('valeur:'+ligne+' '+colonne+' / incrémente '+l+' '+c);
+	return false;
+}
