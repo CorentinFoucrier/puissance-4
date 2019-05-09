@@ -72,7 +72,7 @@ function detectClick(j) {
 		}
 	}
 }
-/* Si case en haut de la colone est vide alors TRUE sinon FALSE */
+/* Si case en haut de la colonne est vide alors TRUE sinon FALSE */
 function verifPosition(j) {
 	if (plateau[0][j] == 0) {
 		return true;
@@ -95,7 +95,33 @@ function refreshTableau(x, y, i) {
 	document.getElementById(x+'-'+y).innerHTML = '<div class="joueur'+i+'"></div>';
 }
 
-function puissance4(ligne, colonne, l, c) {
-	console.log('valeur:'+ligne+' '+colonne+' / incrémente '+l+' '+c);
-	return false;
+function puissance4(ligne, colonne, l, c){
+    console.log('valeur : '+ligne+' '+colonne+' / incremente '+l+' '+c);
+    if (c == 0 && l == 0) {
+        //horizontal
+        var va = 1 + puissance4(ligne, colonne-1, 0, -1) + puissance4(ligne, colonne+1, 0, 1);
+        //vertical
+        var vb = 1 + puissance4(ligne-1, colonne, -1, 0) + puissance4(ligne+1, colonne, 1, 0);
+        //diag gauche
+        var vc = 1 + puissance4(ligne-1, colonne-1, -1, -1) + puissance4(ligne+1, colonne+1, 1, 1);
+        //diag droite
+        var vd = 1 + puissance4(ligne-1, colonne+1, -1, +1) + puissance4(ligne+1, colonne-1, 1, -1);
+
+        console.log(va,vb,vc,vd);
+        if (va == 4 || vb == 4 || vc == 4 || vd == 4) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    if (ligne < nbLigne && ligne >= 0 && colonne < nbColonne && colonne >= 0) {
+        console.log('valeur : '+ligne+' '+colonne+' / incremente '+l+' '+c);
+        if (plateau[ligne][colonne] == nbJoueur) {
+            return 1 + puissance4(ligne + l, colonne + c, l, c);
+        } else {
+            return 0;
+        }
+    }
+    return 0;
 }
